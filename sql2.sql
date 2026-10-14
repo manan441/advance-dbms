@@ -1,17 +1,11 @@
---find out square and cube of the number
+CREATE OR REPLACE PROCEDURE update_dept_salary (deptno IN NUMBER, per IN NUMBER) 
+IS
+BEGIN
+    update emp set salary = salary * (1 + (per / 100)) where dept_no = deptno;
 
-set serveroutput on
-declare
-	N number:=&N;
-	S number;
-	C number;
-begin
+    DBMS_OUTPUT.PUT_LINE('Successfully updated employee in department ' || deptno || '.');
+    
+    COMMIT;
 
-	dbms_output.put_line('Your Number is : '||N);
-	S := N * N ;
-	dbms_output.put_line('Sqaure of Number is : '||S);
-	C := N * N * N;
-	dbms_output.put_line('Cube of Number is : '||C);	
-
-end;
+END;
 /
